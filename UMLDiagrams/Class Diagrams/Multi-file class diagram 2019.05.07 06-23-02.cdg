@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="PanelTools">
+  <ClassDiagramComponents>
+    <Class name="DirectedGraph" package="" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="numberOfNodes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addEdge" returnType="void" visibility="public">
+          <Argument type="Node" name="from"/>
+          <Argument type="Node" name="to"/>
+          <Argument type="int" name="weight"/>
+        </Method>
+        <Method name="check" returnType="boolean" visibility="public">
+          <Argument type="Pair&lt;Node, Node&gt;" name="connection"/>
+        </Method>
+        <Method name="getChildren" returnType="ArrayList&lt;Node&gt;" visibility="public">
+          <Argument type="Node" name="n"/>
+        </Method>
+        <Method name="removeEdge" returnType="void" visibility="public">
+          <Argument type="int" name="ID1"/>
+          <Argument type="int" name="ID2"/>
+        </Method>
+        <Method name="getWeightFromEdge" returnType="int" visibility="public">
+          <Argument type="int" name="id1"/>
+          <Argument type="int" name="id2"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Edge" package="" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="fromPoint" type="Node" visibility="private" isFinal="true"/>
+        <Field name="edgeWeight" type="int" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="Node" name="fromPoint"/>
+          <Argument type="Node" name="toPoint"/>
+          <Argument type="int" name="edgeWeight"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="getFromPoint" returnType="Node" visibility="public"/>
+        <Method name="getToPoint" returnType="Node" visibility="public"/>
+        <Method name="getEdgeWeight" returnType="int" visibility="public"/>
+        <Method name="setEdgeWeight" returnType="void" visibility="public">
+          <Argument type="int" name="edgeWeight"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Graph" package="" visibility="public" isAbstract="true" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="numberOfNodes" type="int" visibility="private"/>
+        <Field name="edgesList" type="ArrayList&lt;Edge&gt;" visibility="protected"/>
+        <Field name="nodesList" type="ArrayList&lt;Node&gt;" visibility="private"/>
+        <Field name="found" type="HashSet&lt;Pair&lt;Node, Node&gt;&gt;" visibility="package"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="numberOfNodes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addEdge" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="Node" name="from"/>
+          <Argument type="Node" name="to"/>
+          <Argument type="int" name="weight"/>
+        </Method>
+        <Method name="check" returnType="boolean" visibility="public" isAbstract="true">
+          <Argument type="Pair&lt;Node, Node&gt;" name="connection"/>
+        </Method>
+        <Method name="removeEdge" returnType="void" visibility="public" isAbstract="true">
+          <Argument type="int" name="id1"/>
+          <Argument type="int" name="id2"/>
+        </Method>
+        <Method name="getChildren" returnType="ArrayList&lt;Node&gt;" visibility="public" isAbstract="true">
+          <Argument type="Node" name="n"/>
+        </Method>
+        <Method name="getWeightFromEdge" returnType="int" visibility="public" isAbstract="true">
+          <Argument type="int" name="id1"/>
+          <Argument type="int" name="id2"/>
+        </Method>
+        <Method name="removeNode" returnType="void" visibility="package">
+          <Argument type="Node" name="node"/>
+        </Method>
+        <Method name="getNumberOfNodes" returnType="int" visibility="public"/>
+        <Method name="getEdgesList" returnType="ArrayList&lt;Edge&gt;" visibility="public"/>
+        <Method name="setNodePosition" returnType="void" visibility="package">
+          <Argument type="int" name="index"/>
+          <Argument type="Point" name="pointPosition"/>
+        </Method>
+        <Method name="getNodesList" returnType="ArrayList&lt;Node&gt;" visibility="public"/>
+        <Method name="addNode" returnType="boolean" visibility="public"/>
+        <Method name="getNode" returnType="Node" visibility="package">
+          <Argument type="int" name="ID"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="GraphDraw" package="" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Fields>
+        <Field name="graph" type="Graph" visibility="private" isFinal="true"/>
+        <Field name="directedGraph" type="boolean" visibility="private" isFinal="true"/>
+        <Field name="panelTools" type="PanelTools" visibility="private" isFinal="true"/>
+        <Field name="gfx" type="Graphics2D" visibility="private" isFinal="true"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="Graph" name="graph"/>
+          <Argument type="boolean" name="directedGraph"/>
+          <Argument type="JPanel" name="jpanel"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="InitializeNodesPosition" returnType="void" visibility="private"/>
+        <Method name="DrawLines" returnType="void" visibility="private"/>
+        <Method name="DrawArrow" returnType="void" visibility="private">
+          <Argument type="Point" name="fromPoint"/>
+          <Argument type="Point" name="toPoint"/>
+        </Method>
+        <Method name="DrawNodes" returnType="void" visibility="private"/>
+        <Method name="DrawGraph" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Node" package="" visibility="public" xPosition="1740.0" yPosition="322.0">
+      <Fields>
+        <Field name="ID" type="int" visibility="package" isFinal="true"/>
+        <Field name="count" type="int" visibility="package" isStatic="true"/>
+        <Field name="nodeposition" type="Point" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="public"/>
+      </Constructors>
+      <Methods>
+        <Method name="resetNumberOfNodes" returnType="void" visibility="public" isStatic="true"/>
+        <Method name="getNodeposition" returnType="Point" visibility="public"/>
+        <Method name="setNodeposition" returnType="void" visibility="public">
+          <Argument type="Point" name="nodeposition"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="PanelTools" package="" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Fields>
+        <Field name="arrowPolygon" type="Polygon" visibility="private" isFinal="true"/>
+        <Field name="rotationAngle" type="double" visibility="private" isFinal="true"/>
+        <Field name="jframeCenter" type="Point" visibility="private" isFinal="true"/>
+        <Field name="previousPoint" type="Point" visibility="private"/>
+      </Fields>
+      <Constructors>
+        <Constructor visibility="package">
+          <Argument type="int" name="numberOfNodes"/>
+          <Argument type="JPanel" name="jpanel"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="generateNewPointPosition" returnType="Point" visibility="public"/>
+        <Method name="getArrowPolygon" returnType="Polygon" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="UndirectedGraph" package="" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="int" name="numberOfNodes"/>
+        </Constructor>
+      </Constructors>
+      <Methods>
+        <Method name="addEdge" returnType="void" visibility="public">
+          <Argument type="Node" name="fromNode"/>
+          <Argument type="Node" name="toNode"/>
+          <Argument type="int" name="weight"/>
+        </Method>
+        <Method name="check" returnType="boolean" visibility="public">
+          <Argument type="Pair&lt;Node, Node&gt;" name="connection"/>
+        </Method>
+        <Method name="getChildren" returnType="ArrayList&lt;Node&gt;" visibility="public">
+          <Argument type="Node" name="n"/>
+        </Method>
+        <Method name="removeEdge" returnType="void" visibility="public">
+          <Argument type="int" name="ID1"/>
+          <Argument type="int" name="ID2"/>
+        </Method>
+        <Method name="getWeightFromEdge" returnType="int" visibility="public">
+          <Argument type="int" name="id1"/>
+          <Argument type="int" name="id2"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <IsRelation name="is" source="DirectedGraph" target="Graph"/>
+    <HasRelation name="panelTools" source="GraphDraw" target="PanelTools" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="found" source="Graph" target="Node" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="HashSet&lt;Pair&lt;Node, Node&gt;&gt;"/>
+    <HasRelation name="graph" source="GraphDraw" target="Graph" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="UndirectedGraph" target="Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Graph" target="Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="Graph" target="Edge" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="fromPoint" source="Edge" target="Node" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="nodesList" source="Graph" target="Node" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Node&gt;"/>
+    <UseRelation source="Edge" target="Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <IsRelation name="is" source="UndirectedGraph" target="Graph"/>
+    <HasRelation name="edgesList" source="Graph" target="Edge" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="ArrayList&lt;Edge&gt;"/>
+    <UseRelation source="DirectedGraph" target="Node" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
